@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,13 +12,9 @@
   <link rel="canonical" href="https://observer54.github.io/null-log/">
 
   <!-- Favicon -->
-
-<!-- PNGで明示的に指定 -->
-<base href="/null-log/">
-<link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
-  <!-- rebuild -->
+  <base href="/null-log/">
+  <link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZX37N9GGMR"></script>
@@ -48,21 +45,24 @@
 <body>
 
 <img src="images/walrus-index.png" alt="Mr. Null the Walrus" class="walrus-img">
-  
-  <h1>0.15 Tons of Me</h1>
-  <p><em>by Mr. Null</em></p>
-  <p>This is a public observation archive. I weigh 0.15 metric tons.</p>
-  <p>I log what I eat, what I weigh, and what I think.<br>
-     Sometimes I break a little. Sometimes the scale breaks me.</p>
-  <p>No coaching. No feedback. Just logs.</p>
 
-  <h2>Sections</h2>
-  <ul style="list-style-type: none; padding-left: 0;">
-    <li>📃 <a href="logs/2025-06/2025-06-17_observation_log.html">Latest Observation Log</a></li>
-    <li>📁 <a href="logs/index.html">All Observation Logs</a></li>
-    <li>→ <a href="blog/">Blog: Welcome to the Blubber Blog</a></li>
-    <li>📖 <a href="blog/">Blog Entries</a></li>
-  </ul>
+<h1>0.15 Tons of Me</h1>
+<p><em>by Mr. Null</em></p>
+<p>This is a public observation archive. I weigh 0.15 metric tons.</p>
+<p>I log what I eat, what I weigh, and what I think.<br>
+   Sometimes I break a little. Sometimes the scale breaks me.</p>
+<p>No coaching. No feedback. Just logs.</p>
+
+<h2>Sections</h2>
+<ul style="list-style-type: none; padding-left: 0;">
+  <li>📃 <a id="latest-log-link" href="#">Latest Observation Log</a></li>
+  <li>📁 <a href="logs/index.html">All Observation Logs</a></li>
+  <li>→ <a href="blog/">Blog: Welcome to the Blubber Blog</a></li>
+  <li>📖 <a href="blog/">Blog Entries</a></li>
+</ul>
+
+<!-- JS to set latest log dynamically -->
+<script src="js/load_logs.js"></script>
 
 </body>
 </html>
