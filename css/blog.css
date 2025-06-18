@@ -1,1 +1,20 @@
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  background: linear-gradient(to bottom, #f0f8ff, #e6f0ff); /* 淡い青グラデ */
+}
+
+h1 {
+  color: #2c3e50;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.2em;
+}
+
+em {
+  color: #666;
+  font-style: italic;
+}
 
