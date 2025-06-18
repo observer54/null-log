@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!latestBlogLink) return;
 
-  fetch("blog/blog_index.json")
+  fetch("/null-log/blog/blog_index.json")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to fetch blog_index.json");
