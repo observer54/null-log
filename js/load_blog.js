@@ -6,16 +6,15 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch("blog/blog_index.json")
     .then((response) => {
       if (!response.ok) {
-        throw new Error("Network response was not OK");
+        throw new Error("Failed to fetch blog_index.json");
       }
       return response.json();
     })
     .then((data) => {
       if (Array.isArray(data) && data.length > 0) {
-        // 最新の記事（最も日付が新しいもの）を取得
-        const sorted = data.sort((a, b) => (a.date < b.date ? 1 : -1));
-        const latest = sorted[0];
-        latestBlogLink.href = `blog/${latest.file}`;
+        // 配列の先頭が最新記事とする
+        const latest = data[0];
+        latestBlogLink.href = `/null-log/blog/${latest.file}`;
         latestBlogLink.textContent = `Latest Blog: ${latest.title}`;
       } else {
         latestBlogLink.textContent = "No blog posts found.";
@@ -26,4 +25,3 @@ document.addEventListener("DOMContentLoaded", function () {
       latestBlogLink.textContent = "Error loading latest blog.";
     });
 });
-
