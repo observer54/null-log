@@ -19,15 +19,19 @@ function findLatestLog(data) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("log-list");
+
+  // 🔍 ログルートの自動判定
+  const root = window.location.pathname.includes("/logs/") ? "/null-log/logs/" : "logs/";
+
   try {
-    const res = await fetch("/null-log/logs/index.json");  // ✅ 絶対パスに変更
+    const res = await fetch(`${root}index.json`);
     const data = await res.json();
 
     // ⏩ 最新ログリンクの設定
     const latestPath = findLatestLog(data);
     const latestLink = document.getElementById("latest-log-link");
     if (latestLink && latestPath) {
-      latestLink.href = latestPath;
+      latestLink.href = `${root}${latestPath}`;
     }
 
     // 🗂 通常のログリスト描画
