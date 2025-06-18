@@ -2,74 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>0.15 Tons of Me – Blog</title>
-  <meta name="description" content="The blog of Mr. Null, a 0.15-ton walrus documenting thoughts, diet, and everyday chaos.">
-  <meta name="keywords" content="Mr. Null, blog, weight diary, walrus, personal blog, diet, wellness">
+  <title>All Blog Entries – 0.15 Tons of Me</title>
+  <meta name="description" content="All blog posts by Mr. Null, archived and listed for viewing.">
   <meta name="author" content="Mr. Null">
   <link rel="canonical" href="https://observer54.github.io/null-log/blog/">
   <link rel="icon" type="image/png" href="../images/walrus-favicon-v2.png">
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZX37N9GGMR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-ZX37N9GGMR');
-  </script>
-
   <style>
     body {
       font-family: sans-serif;
+      max-width: 700px;
+      margin: 2em auto;
+      line-height: 1.6;
       text-align: center;
-      background-color: white;
-      margin: 0;
-      padding: 1rem;
-    }
-    .walrus-img {
-      max-width: 300px;
-      height: auto;
-      margin: 1rem auto;
-      display: block;
     }
     ul {
       list-style-type: none;
-      padding-left: 0;
+      padding: 0;
     }
   </style>
 </head>
 <body>
 
-  <img src="../images/walrus-index.png" alt="Mr. Null the Walrus" class="walrus-img">
-
-  <h1>0.15 Tons of Me</h1>
-  <p><em>by Mr. Null</em></p>
-  <p>This is a personal blog documenting my journey through weight, wellness, and whatever else comes to mind.</p>
-  <p>No advice, no comments, no feedback loops — just one man's quiet record.</p>
-
-  <h2>Blog Entries</h2>
-  <div id="blog-list">Loading blog entries...</div>
+  <h1>📖 Blog Entries</h1>
+  <p><em>Auto-generated from blog_index.json</em></p>
+  <div id="blog-list">Loading...</div>
 
   <script>
-    fetch('blog_index.json')
-      .then(res => res.json())
+    fetch("blog_index.json")
+      .then(res => {
+        if (!res.ok) throw new Error("Fetch failed");
+        return res.json();
+      })
       .then(data => {
-        const listDiv = document.getElementById('blog-list');
-        const ul = document.createElement('ul');
-        data.entries.forEach(entry => {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = entry.href;
-          a.textContent = entry.title;
+        const container = document.getElementById("blog-list");
+        const ul = document.createElement("ul");
+
+        data.forEach(entry => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = entry.file;
+          a.textContent = `${entry.date}: ${entry.title}`;
           li.appendChild(a);
           ul.appendChild(li);
         });
-        listDiv.innerHTML = '';
-        listDiv.appendChild(ul);
+
+        container.innerHTML = "";
+        container.appendChild(ul);
       })
       .catch(err => {
-        document.getElementById('blog-list').textContent = 'Failed to load blog entries.';
-        console.error(err);
+        console.error("Error loading blog list:", err);
+        document.getElementById("blog-list").textContent = "Failed to load blog entries.";
       });
   </script>
 
