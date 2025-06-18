@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         files.forEach(file => {
           const li = document.createElement("li");
           const a = document.createElement("a");
-          a.href = `${month}/${file}`;
+          a.href = `logs/${month}/${file}`;
           a.textContent = file.replace(".html", "");
           li.appendChild(a);
           ul.appendChild(li);
