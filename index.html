@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,34 +39,36 @@
       margin: 1rem auto;
       display: block;
     }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
   </style>
 </head>
 <body>
 
-<img src="images/walrus-index.png" alt="Mr. Null the Walrus" class="walrus-img">
+  <img src="images/walrus-index.png" alt="Mr. Null the Walrus" class="walrus-img">
 
-<h1>0.15 Tons of Me</h1>
-<p><em>by Mr. Null</em></p>
-<p>This is a public observation archive. I weigh 0.15 metric tons.</p>
-<p>I log what I eat, what I weigh, and what I think.<br>
-   Sometimes I break a little. Sometimes the scale breaks me.</p>
-<p>No coaching. No feedback. Just logs.</p>
+  <h1>0.15 Tons of Me</h1>
+  <p><em>by Mr. Null</em></p>
+  <p>This is a public observation archive. I weigh 0.15 metric tons.</p>
+  <p>I log what I eat, what I weigh, and what I think.<br>
+     Sometimes I break a little. Sometimes the scale breaks me.</p>
+  <p>No coaching. No feedback. Just logs.</p>
 
-<h2>Sections</h2>
-<ul style="list-style-type: none; padding-left: 0;">
-  <!-- Observation Logs -->
-  <li>📃 <a id="latest-log-link" href="#">Latest Observation Log</a></li>
-  <li>📁 <a href="logs/index.html">All Observation Logs</a></li>
+  <h2>Sections</h2>
+  <ul>
+    <!-- Observation Logs -->
+    <li>📃 <a id="latest-log-link" href="#">Latest Observation Log</a></li>
+    <li>📁 <a href="logs/index.html">All Observation Logs</a></li>
 
-  <!-- Blog Posts -->
-  <li>🆕 <a id="latest-blog-link" href="#">Latest Blog Post</a></li>
-  <li>📖 <a href="blog/">All Blog Entries</a></li>
-</ul>
+    <!-- Blog Posts -->
+    <li>🆕 <a id="latest-blog-link" href="#">Latest Blog Post</a></li>
+    <li>📖 <a href="blog/">All Blog Entries</a></li>
+  </ul>
 
-
-<!-- JS to set latest log dynamically -->
-<script src="js/load_logs.js"></script><script src="js/load_logs.js"></script>
-<script src="js/load_blog.js"></script> <!-- ← blog用スクリプトもここに必要です -->
-
+  <!-- Load dynamic latest links -->
+  <script src="js/load_logs.js"></script>
+  <script src="js/load_blog.js"></script>
 </body>
 </html>
