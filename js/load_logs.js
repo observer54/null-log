@@ -20,7 +20,7 @@ function findLatestLog(data) {
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("log-list");
   try {
-    const res = await fetch("logs/index.json");  // ✅ パスを修正
+    const res = await fetch("/null-log/logs/index.json");  // ✅ パスを修正
     const data = await res.json();
 
     // ⏩ 最新ログリンクの設定
