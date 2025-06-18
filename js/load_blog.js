@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!latestBlogLink) return;
 
-  fetch("blog/index.json")
+  fetch("blog/blog_index.json")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not OK");
