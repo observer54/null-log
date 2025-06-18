@@ -20,7 +20,7 @@ function findLatestLog(data) {
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("log-list");
   try {
-    const res = await fetch("index.json");
+    const res = await fetch("logs/index.json");  // ✅ パスを修正
     const data = await res.json();
 
     // ⏩ 最新ログリンクの設定
@@ -49,6 +49,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       container.appendChild(section);
     }
   } catch (e) {
-    container.textContent = "⚠️ Could not load index.json.";
+    container.textContent = "⚠️ Could not load logs/index.json.";
   }
 });
