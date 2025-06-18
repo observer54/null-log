@@ -48,11 +48,30 @@
   <p>No advice, no comments, no feedback loops — just one man's quiet record.</p>
 
   <h2>Blog Entries</h2>
+  <div id="blog-list">Loading blog entries...</div>
 
-  <!-- Add blog entries below -->
-  <ul>
- <li><a href="2025-06-17-welcome.html">June 17, 2025: Observation Log</a></li>
-  </ul>
+  <script>
+    fetch('blog_index.json')
+      .then(res => res.json())
+      .then(data => {
+        const listDiv = document.getElementById('blog-list');
+        const ul = document.createElement('ul');
+        data.entries.forEach(entry => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = entry.href;
+          a.textContent = entry.title;
+          li.appendChild(a);
+          ul.appendChild(li);
+        });
+        listDiv.innerHTML = '';
+        listDiv.appendChild(ul);
+      })
+      .catch(err => {
+        document.getElementById('blog-list').textContent = 'Failed to load blog entries.';
+        console.error(err);
+      });
+  </script>
 
 </body>
 </html>
