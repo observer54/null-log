@@ -28,45 +28,43 @@
   <p><em>Auto-generated from blog_index.json</em></p>
   <div id="blog-list">Loading...</div>
 
- <script>
-  fetch("blog_index.json")
-    .then(res => {
-      if (!res.ok) throw new Error("Fetch failed");
-      return res.json();
-    })
-    .then(data => {
-      const container = document.getElementById("blog-list");
+  <script>
+    fetch("blog_index.json")
+      .then(res => {
+        if (!res.ok) throw new Error("Fetch failed");
+        return res.json();
+      })
+      .then(data => {
+        const container = document.getElementById("blog-list");
+        container.innerHTML = "";
 
-      container.innerHTML = "";
+        for (const [month, entries] of Object.entries(data)) {
+          if (!entries.length) continue;
 
-      for (const [month, entries] of Object.entries(data)) {
-        if (!entries.length) continue;
+          const section = document.createElement("section");
+          const h3 = document.createElement("h3");
+          h3.textContent = month;
 
-        const section = document.createElement("section");
-        const h3 = document.createElement("h3");
-        h3.textContent = month;
-        const ul = document.createElement("ul");
+          const ul = document.createElement("ul");
+          entries.forEach(entry => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = `${month}/${entry.file}`;
+            a.textContent = entry.title || entry.file;
+            li.appendChild(a);
+            ul.appendChild(li);
+          });
 
-        entries.forEach(entry => {
-          const li = document.createElement("li");
-          const a = document.createElement("a");
-          a.href = `${month}/${entry.file}`;
-          a.textContent = entry.title || entry.file;
-          li.appendChild(a);
-          ul.appendChild(li);
-        });
-
-        section.appendChild(h3);
-        section.appendChild(ul);
-        container.appendChild(section);
-      }
-    })
-    .catch(err => {
-      console.error("Error loading blog list:", err);
-      document.getElementById("blog-list").textContent = "Failed to load blog entries.";
-    });
-</script>
-
+          section.appendChild(h3);
+          section.appendChild(ul);
+          container.appendChild(section);
+        }
+      })
+      .catch(err => {
+        console.error("Error loading blog list:", err);
+        document.getElementById("blog-list").textContent = "Failed to load blog entries.";
+      });
+  </script>
 
 </body>
 </html>
