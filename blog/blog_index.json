@@ -1,9 +1,10 @@
-[
-  {
-    "date": "2025-06-20",
-    "title": "Welcome to the Blubber Blog",
-    "file": "2025-06-20_blog.html"
-  }
- 
-]
-
+{
+  "2025-06": [
+    {
+      "file": "2025-06-20_blog.html",
+      "title": "Restarting 0.15 Tons of Me – June 20, 2025"
+    },
+   
+  ],
+  "2025-07": []
+}
