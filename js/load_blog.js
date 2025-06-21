@@ -24,21 +24,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("blog-list");
   const latestBlogLink = document.getElementById("latest-blog-link");
 
-  // 🔍 パスの自動切り替え（ローカル or GitHub Pages）
+  // 🔍 GitHub Pages対応
   const root = window.location.pathname.includes("/blog/") ? "/null-log/blog/" : "blog/";
 
   try {
     const res = await fetch(`${root}blog_index.json`);
     const data = await res.json();
 
-    // 🕒 最新記事リンク
+    // 🔗 最新リンク
     const latest = findLatestBlog(data);
     if (latestBlogLink && latest.path) {
       latestBlogLink.href = `${root}${latest.path}`;
       latestBlogLink.textContent = `Latest Blog: ${latest.title}`;
     }
 
-    // 📚 月別ブログリスト
+    // 🗂️ リスト描画
     if (container) {
       for (const [month, entries] of Object.entries(data)) {
         if (!entries.length) continue;
@@ -46,8 +46,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         const section = document.createElement("section");
         const h3 = document.createElement("h3");
         h3.textContent = month;
-        const ul = document.createElement("ul");
 
+        const ul = document.createElement("ul");
         entries.forEach(entry => {
           const li = document.createElement("li");
           const a = document.createElement("a");
@@ -63,8 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
   } catch (e) {
-    if (container) container.textContent = "⚠️ Could not load blog_index.json.";
-    if (latestBlogLink) latestBlogLink.textContent = "⚠️ Blog loading error.";
-    console.error(e);
+    if (container) container.textContent = "⚠️ Failed to load blog entries.";
+    console.error("Error loading blog list:", e);
   }
 });
