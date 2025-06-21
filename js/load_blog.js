@@ -1,27 +1,70 @@
-document.addEventListener("DOMContentLoaded", function () {
+function findLatestBlog(data) {
+  let latestDate = "";
+  let latestPath = "";
+  let latestTitle = "";
+
+  for (const [month, entries] of Object.entries(data)) {
+    entries.forEach(entry => {
+      const match = entry.file.match(/^(\d{4}-\d{2}-\d{2})_blog\.html$/);
+      if (match) {
+        const date = match[1];
+        if (date > latestDate) {
+          latestDate = date;
+          latestPath = `${month}/${entry.file}`;
+          latestTitle = entry.title;
+        }
+      }
+    });
+  }
+
+  return { path: latestPath, title: latestTitle };
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const container = document.getElementById("blog-list");
   const latestBlogLink = document.getElementById("latest-blog-link");
 
-  if (!latestBlogLink) return;
+  // 🔍 パスの自動切り替え（ローカル or GitHub Pages）
+  const root = window.location.pathname.includes("/blog/") ? "/null-log/blog/" : "blog/";
 
-  fetch("/null-log/blog/blog_index.json")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to fetch blog_index.json");
+  try {
+    const res = await fetch(`${root}blog_index.json`);
+    const data = await res.json();
+
+    // 🕒 最新記事リンク
+    const latest = findLatestBlog(data);
+    if (latestBlogLink && latest.path) {
+      latestBlogLink.href = `${root}${latest.path}`;
+      latestBlogLink.textContent = `Latest Blog: ${latest.title}`;
+    }
+
+    // 📚 月別ブログリスト
+    if (container) {
+      for (const [month, entries] of Object.entries(data)) {
+        if (!entries.length) continue;
+
+        const section = document.createElement("section");
+        const h3 = document.createElement("h3");
+        h3.textContent = month;
+        const ul = document.createElement("ul");
+
+        entries.forEach(entry => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = `${root}${month}/${entry.file}`;
+          a.textContent = entry.title || entry.file;
+          li.appendChild(a);
+          ul.appendChild(li);
+        });
+
+        section.appendChild(h3);
+        section.appendChild(ul);
+        container.appendChild(section);
       }
-      return response.json();
-    })
-    .then((data) => {
-      if (Array.isArray(data) && data.length > 0) {
-        // 配列の先頭が最新記事とする
-        const latest = data[0];
-        latestBlogLink.href = `/null-log/blog/${latest.file}`;
-        latestBlogLink.textContent = `Latest Blog: ${latest.title}`;
-      } else {
-        latestBlogLink.textContent = "No blog posts found.";
-      }
-    })
-    .catch((error) => {
-      console.error("Error loading latest blog:", error);
-      latestBlogLink.textContent = "Error loading latest blog.";
-    });
+    }
+  } catch (e) {
+    if (container) container.textContent = "⚠️ Could not load blog_index.json.";
+    if (latestBlogLink) latestBlogLink.textContent = "⚠️ Blog loading error.";
+    console.error(e);
+  }
 });
