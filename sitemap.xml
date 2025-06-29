@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- トップページ -->
   <url>
     <loc>https://observer54.github.io/null-log/</loc>
     <lastmod>2025-06-29</lastmod>
   </url>
-
-  <!-- 観察ログのトップ -->
-  <url>
-    <loc>https://observer54.github.io/null-log/logs/index.html</loc>
-    <lastmod>2025-06-29</lastmod>
-  </url>
-
-  <!-- ブログのイントロ記事（英語） -->
-  <url>
-    <loc>https://observer54.github.io/null-log/blog/2025-06-29_intro_blog_en_full.html</loc>
-    <lastmod>2025-06-29</lastmod>
-  </url>
-
-  <!-- 🔧 今後の追記テンプレ：新しい記事が出たらコピペして編集 -->
-  <!--
-  <url>
-    <loc>https://observer54.github.io/null-log/blog/YYYY-MM-DD_slug.html</loc>
-    <lastmod>YYYY-MM-DD</lastmod>
-  </url>
-  -->
-
 </urlset>
