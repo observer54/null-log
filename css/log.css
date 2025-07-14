@@ -31,11 +31,20 @@ em {
   gap: 0.3em;
 }
 
+/* 段落アイコンの余白調整 */
+p::before {
+  display: inline-block;
+  width: 1.5em;
+  margin-right: 0.3em;
+}
+
+/* リストの見やすさ向上 */
 ul {
   list-style-type: none;
   padding-left: 1em;
 }
 
+/* 引用の装飾 */
 blockquote {
   margin: 1em 0;
   padding: 0.5em 1em;
@@ -45,6 +54,7 @@ blockquote {
   color: #444;
 }
 
+/* リンクの基本スタイル */
 a {
   color: #3366cc;
   text-decoration: none;
@@ -54,3 +64,28 @@ a:hover {
   text-decoration: underline;
 }
 
+/* フッターリンクや文末リンクのスタイル */
+footer {
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid #ccc;
+  font-size: 0.95em;
+  color: #555;
+  text-align: center;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 600px) {
+  body {
+    font-size: 1em;
+    padding: 0 0.7em;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .section-title {
+    font-size: 1.1em;
+  }
+}
