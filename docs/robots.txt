@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://observer54.github.io/null-log/docs/sitemap.xml
